@@ -38,11 +38,11 @@ export class LoginService {
             }));
     }
 
-    signUp(name:string, email: string, password: string): Observable<User> 
+    signUp(name:string, email: string, password: string): Observable<{success:boolean,token:string}> 
     {
         return this.http
-            .post<User>(`${RESTAURANT_API}/signUp`, {name:name,email: email, password: password})
-            .pipe(tap(user => this.user = user));
+            .post<{success:boolean,token:string}>(`${RESTAURANT_API}/api/v1/auth/register`, {userName:name,userEmail: email, userPassword: password})
+            //.pipe(tap(user => this.user = user));
     }
 
     isLoggedIn(): boolean 
@@ -58,5 +58,6 @@ export class LoginService {
     logout() 
     {
         this.user = undefined;
+        localStorage.setItem('user', undefined);
     }
 }

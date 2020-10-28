@@ -40,8 +40,8 @@ export class LoginComponent implements OnInit {
         }
         else
         {
-            // this.logInObs = this.loginServive
-            // .signUp(loginForm.value.fullName,loginForm.value.email, loginForm.value.password);
+            this.logInObs = this.loginServive
+            .signUp(loginForm.value.fullName,loginForm.value.email, loginForm.value.password);
         }
         
         this.logInObs.subscribe(
@@ -64,6 +64,7 @@ export class LoginComponent implements OnInit {
                 this.router.navigate([atob(this.navigateTo)]);
                 this.notificationService.notify(`Welcome ${user.userName}`);
                 this.loginServive.user =user;
+                localStorage.setItem('user', JSON.stringify(user));
 
             },
             response => this.notificationService.notify(response.error.message)
