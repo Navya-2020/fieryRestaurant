@@ -28,9 +28,10 @@ export class MenuComponent implements OnInit {
                 {
                     console.log(response);
                     
-                    this.menu = response.data.menuItems;
+                    this.menu = response.data;
                     
                 }
+            }
         )
     }
 
