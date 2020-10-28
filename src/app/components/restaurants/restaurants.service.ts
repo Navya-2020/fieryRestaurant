@@ -13,8 +13,16 @@ export class RestaurantsService {
     constructor(private http: HttpClient) {
     }
 
-    getAllRestaurants(): Observable<Restaurant[]> {
-        return this.http.get<Restaurant[]>(`${RESTAURANT_API}/restaurants`);
+    getAllRestaurants(): Observable<{
+        success: boolean,
+        count: number,
+        data: Restaurant[]
+      }> {
+        return this.http.get<{
+            success: boolean,
+            count: number,
+            data: Restaurant[]
+          }>(`${RESTAURANT_API}/api/v1/restaurants`);
     }
 
     getMenuOfRestaurant(id: string): Observable<MenuItem[]> {
