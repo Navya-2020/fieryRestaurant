@@ -5,7 +5,7 @@ import {Observable} from 'rxjs';
 
 import {MenuItem} from '../menu-item/menu-item.model';
 //import {RestaurantsService} from '../../restaurants.service';
-import {RestaurantsService} from '../../restaurants-json.service';
+import {RestaurantsService} from '../../restaurants.service';
 
 @Component({
     selector: 'lacc-menu',
@@ -22,7 +22,16 @@ export class MenuComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.menu = this.restaurantService.getMenuOfRestaurant(this.route.parent.snapshot.params['id']);
+        this.restaurantService.getMenuOfRestaurant(this.route.parent.snapshot.paramMap.get('id')).subscribe(
+            response =>{
+                if(response.success)
+                {
+                    console.log(response);
+                    
+                    this.menu = response.data.menuItems;
+                    
+                }
+        )
     }
 
 }

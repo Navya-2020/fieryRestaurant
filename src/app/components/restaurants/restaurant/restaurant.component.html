@@ -1,8 +1,10 @@
-<a [routerLink]="['/restaurants', restaurant.id]" class="gal">
-    <img [src]="restaurant.imagePath" alt=""><span></span>
+<a [routerLink]="['/restaurants', restaurant._id]" class="gal" >
+    <!-- <img [src]="restaurant.imagePath" alt=""><span></span> -->
+    <img [src]="'https://picsum.photos/500'" alt=""><span></span>
 </a>
 <div class="col2">
-    <span class="col3"><a href="#">{{ restaurant.name }}</a></span> $ It runs from Monday to Friday, from {{ restaurant.hours }}
+    <span class="col3" ><a href="#">{{ restaurant.name }}</a></span> It opens from {{ restaurant.hours }}
+    
 </div>
 
 
