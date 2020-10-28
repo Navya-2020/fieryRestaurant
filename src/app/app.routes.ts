@@ -11,7 +11,7 @@ import { OrderComponent } from './components/order/order.component';
 import { OrdersComponent } from './components/orders/orders.component';
 
 export const ROUTES: Routes = [
-    {path: '', component: HomeComponent},
+    {path: '', component: RestaurantsComponent},
     {path: 'login/:to', component: LoginComponent},
     {path: 'login', component: LoginComponent},
     {
