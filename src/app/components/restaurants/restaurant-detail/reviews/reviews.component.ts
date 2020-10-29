@@ -30,7 +30,7 @@ export class ReviewsComponent implements OnInit {
          * when doing ngFor use the PIPE SYNC which already does the subscribe automatically
          * @type {Observable<Review>}
          */
-        this.reviews = this.restaurantsService.getReviewsOfRestaurants(this.route.parent.snapshot.params['id']);
+       // this.reviews = this.restaurantsService.getReviewsOfRestaurants(this.route.parent.snapshot.params['id']);
 
 
         // this.restaurantsService.getReviewsOfRestaurants(this.route.parent.snapshot.parent.params['id'])
@@ -38,7 +38,10 @@ export class ReviewsComponent implements OnInit {
         //         tap(reviews => console.log('review: ', reviews))
         //     )
         //     .subscribe(reviews => this.reviews = reviews);
-        this.reviewService.getReviews().subscribe(
+        console.log(this.route.parent.snapshot.paramMap.get('id'));
+        
+        this.reviewService.getReviews(this.route.parent.snapshot.paramMap.get('id')).subscribe(
+        
             response => {
                 if(response.success)
                 {

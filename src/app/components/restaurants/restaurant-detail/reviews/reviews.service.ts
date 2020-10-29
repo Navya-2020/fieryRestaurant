@@ -10,7 +10,7 @@ import { Review } from './reviews.model';
 export class ReviewsService {
 
   constructor(private http: HttpClient) { }
-  getReviews(): Observable<{
+  getReviews(id : string): Observable<{
     success: boolean,
     count: number,
     data: Review[]
@@ -19,6 +19,6 @@ export class ReviewsService {
       success: boolean,
     count: number,
     data: Review[]
-    }>(`${RESTAURANT_API}/api/v1/restaurants/review`);
+    }>(`${RESTAURANT_API}/api/v1/restaurants/review/${id}`);
   }
 }

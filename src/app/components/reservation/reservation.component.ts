@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Restaurant } from './../restaurants/restaurant/restaurant.model';
-import { RestaurantsService } from './../restaurants/restaurants-json.service';
+//import { RestaurantsService } from './../restaurants/restaurants-json.service';
+import { RestaurantsService } from './../restaurants/restaurants.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReservationService } from './reservation.service';
 import { Reservation } from './reservation.model';
@@ -28,19 +29,19 @@ export class ReservationComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.restaurants = this.restaurantService.getAllRestaurants();
-        this.filters = this.getFilterData();
-        this.reservationService.getAllReservation(this.route.snapshot.paramMap.get('id')).subscribe(
+        this.restaurantService.getAllRestaurants().subscribe(
             response => {
                 if(response.success)
                 {
                     console.log(response);
                     
-                    this.reservation = response.data;
+                    this.restaurants= response.data;
                     
                 }
             }
         )
+        this.filters = this.getFilterData();
+        
     }
 
     getBGcolorForRating(rating: number): string {
@@ -80,7 +81,18 @@ export class ReservationComponent implements OnInit {
         Object.keys(this.selectedFilters).forEach(k => {
             this.selectedFilters[k] = '';
         });
-        this.restaurants = this.restaurantService.getAllRestaurants();
+        //this.restaurants = this.restaurantService.getAllRestaurants();
+        this.restaurantService.getAllRestaurants().subscribe(
+            response => {
+                if(response.success)
+                {
+                    console.log(response);
+                    
+                    this.restaurants= response.data;
+                    
+                }
+            }
+        )
     }
 
     selectFilter(id: string, $event) {
@@ -117,7 +129,18 @@ export class ReservationComponent implements OnInit {
 
     filterRestaurants(type, name) {
         this.selectedFilters[type] = name;
-        this.restaurants = this.restaurantService.getAllRestaurants();
+       // this.restaurants = this.restaurantService.getAllRestaurants();
+       this.restaurantService.getAllRestaurants().subscribe(
+        response => {
+            if(response.success)
+            {
+                console.log(response);
+                
+                this.restaurants= response.data;
+                
+            }
+        }
+    )
         if (this.selectedFilters['category'] !== '') {
             this.restaurants=this.restaurants.filter(x=>x.category === this.selectedFilters['category']);
         }

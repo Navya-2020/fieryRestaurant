@@ -22,4 +22,16 @@ export class ReservationService {
     data: Reservation[]
     }>(`${RESTAURANT_API}/api/v1/restaurants/reservation/${id}`);
   }
+
+  
+  createReservation(id : string, reservationObj): Observable<{
+    success: boolean,
+    
+    data: Reservation
+  }>{
+    return this.http.post<{
+      success: boolean,
+    data: Reservation
+    }>(`${RESTAURANT_API}/api/v1/restaurants/reservation/${id}`, reservationObj);
+  }
 }

@@ -3,6 +3,9 @@ import {Restaurant} from './../../restaurants/restaurant/restaurant.model';
 import {RestaurantsService} from './../../restaurants/restaurants-json.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import {MenuItem} from './../../restaurants/restaurant-detail/menu-item/menu-item.model';
+import { ReviewsService } from '../../restaurants/restaurant-detail/reviews/reviews.service';
+import { Reservation } from '../reservation.model';
+import { ReservationService } from '../reservation.service';
 
 @Component({
     selector: 'lacc-reservation-entry',
@@ -10,18 +13,30 @@ import {MenuItem} from './../../restaurants/restaurant-detail/menu-item/menu-ite
     styleUrls:['./reservation-entry.component.css']
 })
 export class ReservationEntryComponent implements OnInit {
-
+    reservation: Reservation[];
     restaurant: Restaurant;
     id:string;
     menu: MenuItem[];
 
     constructor(private restaurantService: RestaurantsService, private route: ActivatedRoute,
+        private reservationService: ReservationService,
         private router: Router) {
     }
 
     ngOnInit() {
         this.route.params.subscribe(params => this.id = params.id);
         this.restaurant = this.restaurantService.getAllRestaurants().find(x=>x.id===this.id);
+        this.reservationService.getAllReservation(this.route.snapshot.paramMap.get('id')).subscribe(
+                response => {
+                    if(response.success)
+                    {
+                        console.log(response);
+                        
+                        this.reservation = response.data;
+                        
+                    }
+                }
+            )
     }
 
     getBGcolorForRating(rating:number):string{
