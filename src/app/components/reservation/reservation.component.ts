@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Restaurant } from './../restaurants/restaurant/restaurant.model';
 import { RestaurantsService } from './../restaurants/restaurants-json.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ReservationService } from './reservation.service';
+import { Reservation } from './reservation.model';
 
 
 @Component({
@@ -12,6 +14,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ReservationComponent implements OnInit {
 
     restaurants: Restaurant[] = [];
+    reservation: Reservation[];
     filters: any = {};
     selectedFilters: {} = {
         category: '',
@@ -21,12 +24,23 @@ export class ReservationComponent implements OnInit {
     };
 
     constructor(private restaurantService: RestaurantsService, private route: ActivatedRoute,
-        private router: Router) {
+        private router: Router, private reservationService: ReservationService) {
     }
 
     ngOnInit() {
         this.restaurants = this.restaurantService.getAllRestaurants();
         this.filters = this.getFilterData();
+        this.reservationService.getAllReservation(this.route.snapshot.paramMap.get('id')).subscribe(
+            response => {
+                if(response.success)
+                {
+                    console.log(response);
+                    
+                    this.reservation = response.data;
+                    
+                }
+            }
+        )
     }
 
     getBGcolorForRating(rating: number): string {

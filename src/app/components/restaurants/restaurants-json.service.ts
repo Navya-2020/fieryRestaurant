@@ -3,16 +3,19 @@ import {Injectable} from '@angular/core';
 import {Restaurant} from './restaurant/restaurant.model';
 import {MenuItem} from './restaurant-detail/menu-item/menu-item.model';
 import {Review} from './restaurant-detail/reviews/reviews.model';
+import { Observable } from 'rxjs';
+import { Reservation } from '../reservation/reservation.model';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
     providedIn:'root'
 })
 export class RestaurantsService {
 
-    constructor() {
+    constructor(private http: HttpClient) {
 
     }
-
+  
     getAllRestaurants():Restaurant[] {
         return this.restaurants;
     }
@@ -21,7 +24,7 @@ export class RestaurantsService {
         return this.menuItems;
     }
 
-
+    
     getReviewsOfRestaurants(id: string):Review[] {
         return this.reviews;
     }
@@ -40,10 +43,10 @@ export class RestaurantsService {
           type: "Dine-out",
           area: "Indiranagar",
           address: "220, 13th Cross, Brookefield, Indiranagar, Bangalore",
-          reservation:{ 
-            hours: "10:00 AM - 12:00 PM, 01:00 PM - 04:00 PM, 07:00 PM - 10:00 PM",
-            maxPeople: 10
-           }
+          // reservation:{ 
+          //   hours: "10:00 AM - 12:00 PM, 01:00 PM - 04:00 PM, 07:00 PM - 10:00 PM",
+          //   maxPeople: 10
+          //  }
         },
         {
           id: "brazilian",
@@ -58,10 +61,10 @@ export class RestaurantsService {
           type: "Cafe",
           area: "Indiranagar",
           address: "220, 13th Cross, Brookefield, Indiranagar, Bangalore",
-          reservation:{ 
-            hours: "10:00 AM - 12:00 PM, 01:00 PM - 04:00 PM, 07:00 PM - 10:00 PM",
-            maxPeople: 10
-           }
+          // reservation:{ 
+          //   hours: "10:00 AM - 12:00 PM, 01:00 PM - 04:00 PM, 07:00 PM - 10:00 PM",
+          //   maxPeople: 10
+          //  }
         },
         {
           id: "argentina",
@@ -76,10 +79,10 @@ export class RestaurantsService {
           type: "Cafe",
           area: "Indiranagar",
           address: "220, 13th Cross, Brookefield, Indiranagar, Bangalore",
-          reservation:{ 
-            hours: "10:00 AM - 12:00 PM, 01:00 PM - 04:00 PM, 07:00 PM - 10:00 PM",
-            maxPeople: 10
-           }
+          // reservation:{ 
+          //   hours: "10:00 AM - 12:00 PM, 01:00 PM - 04:00 PM, 07:00 PM - 10:00 PM",
+          //   maxPeople: 10
+          //  }
         },
         {
           id: "colombia",
@@ -94,10 +97,10 @@ export class RestaurantsService {
           type: "Cafe",
           area: "Indiranagar",
           address: "220, 13th Cross, Brookefield, Indiranagar, Bangalore",
-          reservation:{ 
-            hours: "10:00 AM - 12:00 PM, 01:00 PM - 04:00 PM, 07:00 PM - 10:00 PM",
-            maxPeople: 10
-           }
+          // reservation:{ 
+          //   hours: "10:00 AM - 12:00 PM, 01:00 PM - 04:00 PM, 07:00 PM - 10:00 PM",
+          //   maxPeople: 10
+          //  }
         },
         {
           id: "ecuador",
@@ -112,10 +115,10 @@ export class RestaurantsService {
           type: "Dine-out",
           area: "Indiranagar",
           address: "220, 13th Cross, Brookefield, Indiranagar, Bangalore",
-          reservation:{ 
-            hours: "10:00 AM - 12:00 PM, 01:00 PM - 04:00 PM, 07:00 PM - 10:00 PM",
-            maxPeople: 10
-           }
+          // reservation:{ 
+          //   hours: "10:00 AM - 12:00 PM, 01:00 PM - 04:00 PM, 07:00 PM - 10:00 PM",
+          //   maxPeople: 10
+          //  }
         },
         {
           id: "chile",
@@ -130,10 +133,10 @@ export class RestaurantsService {
           type: "Cafe",
           area: "Indiranagar",
           address: "220, 13th Cross, Brookefield, Indiranagar, Bangalore",
-          reservation:{ 
-            hours: "10:00 AM - 12:00 PM, 01:00 PM - 04:00 PM, 07:00 PM - 10:00 PM",
-            maxPeople: 10
-           }
+          // reservation:{ 
+          //   hours: "10:00 AM - 12:00 PM, 01:00 PM - 04:00 PM, 07:00 PM - 10:00 PM",
+          //   maxPeople: 10
+          //  }
         },
         {
           id: "bolivia",
@@ -148,10 +151,10 @@ export class RestaurantsService {
           type: "Cafe",
           area: "Indiranagar",
           address: "220, 13th Cross, Brookefield, Indiranagar, Bangalore",
-          reservation:{ 
-            hours: "10:00 AM - 12:00 PM, 01:00 PM - 04:00 PM, 07:00 PM - 10:00 PM",
-            maxPeople: 10
-           }
+          // reservation:{ 
+          //   hours: "10:00 AM - 12:00 PM, 01:00 PM - 04:00 PM, 07:00 PM - 10:00 PM",
+          //   maxPeople: 10
+          //  }
         },
         {
           id: "venezuela",
@@ -166,10 +169,10 @@ export class RestaurantsService {
           type: "Cafe",
           area: "Indiranagar",
           address: "220, 13th Cross, Brookefield, Indiranagar, Bangalore",
-          reservation:{ 
-            hours: "10:00 AM - 12:00 PM, 01:00 PM - 04:00 PM, 07:00 PM - 10:00 PM",
-            maxPeople: 10
-           }
+          // reservation:{ 
+          //   hours: "10:00 AM - 12:00 PM, 01:00 PM - 04:00 PM, 07:00 PM - 10:00 PM",
+          //   maxPeople: 10
+          //  }
         }
       ];
     

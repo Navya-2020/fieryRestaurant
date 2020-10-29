@@ -3,11 +3,13 @@
     <div *ngFor="let order of orders" class="panel panel-default curved-border">
       <div class="panel-body">
         <div class="col-lg-2">
-          <img class="curved-border" [src]="order.imagePath">
+          <img class="curved-border" [src]="'https://picsum.photos/100'">
         </div>
         <div class="col-lg-10">
-          <h3 class="margin-top-zero">{{order.name}} Restaurent</h3>
-          <p>{{order.address}}</p>
+          <h3 class="margin-top-zero"> {{order.id}}</h3>
+          <p>{{order.status}}</p>
+          <p>{{order.totalAmount}}</p>
+          <p>{{order.orderItems}}</p>
           <div class="col-lg-12">
             <b>Ordered Items</b>
           </div>

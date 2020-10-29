@@ -14,7 +14,16 @@ export class OrdersComponent implements OnInit {
   constructor(private ordersService:OrdersService) { }
 
   ngOnInit() {
-    this.orders = this.ordersService.Orders;
+    this.ordersService.getAllOrders().subscribe(
+      response => {
+        if(response.success)
+        {
+          console.log(response);
+          this.orders = response.data;
+        }
+      }
+
+    )
   }
 
 }

@@ -13,5 +13,5 @@ export interface Restaurant {
     type: string;
     area: string;
     address: string;
-    reservation: Reservation;
+   // reservation: Reservation;
 }

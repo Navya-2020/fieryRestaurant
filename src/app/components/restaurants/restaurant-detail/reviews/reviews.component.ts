@@ -6,6 +6,7 @@ import {tap} from 'rxjs/operators';
 import {RestaurantsService} from '../../restaurants-json.service';
 import {Observable} from 'rxjs/index';
 import {Review} from './reviews.model';
+import { ReviewsService } from './reviews.service';
 
 @Component({
     selector: 'lacc-reviews',
@@ -19,6 +20,7 @@ export class ReviewsComponent implements OnInit {
     imgReaction: string = '';
 
     constructor(private restaurantsService: RestaurantsService,
+                private reviewService: ReviewsService,
                 private route: ActivatedRoute) {
     }
 
@@ -36,7 +38,17 @@ export class ReviewsComponent implements OnInit {
         //         tap(reviews => console.log('review: ', reviews))
         //     )
         //     .subscribe(reviews => this.reviews = reviews);
-
+        this.reviewService.getReviews().subscribe(
+            response => {
+                if(response.success)
+                {
+                    console.log(response);
+                    
+                    this.reviews = response.data;
+                    
+                }
+            }
+        )
     }
 
 }
